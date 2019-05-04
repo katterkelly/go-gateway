@@ -25,7 +25,7 @@ func parseWindowsRoutePrint(output []byte) (net.IP, net.IP, error) {
 				return nil, nil, errNoGateway
 			}
 
-			fields := strings.Fields(lines[idx+3])
+			fields := strings.Fields(lines[idx+2])
 
 			if len(fields) < 3 {
 				return nil, nil, errNoGateway
