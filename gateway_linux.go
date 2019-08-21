@@ -18,6 +18,7 @@ func DiscoverGateway() (ip net.IP, err error) {
 
 func discoverGatewayUsingIpRouteShow() (net.IP, error) {
 	routeCmd := exec.Command("ip", "route", "show")
+	routeCmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 	output, err := routeCmd.CombinedOutput()
 	if err != nil {
 		return nil, err
@@ -28,6 +29,7 @@ func discoverGatewayUsingIpRouteShow() (net.IP, error) {
 
 func discoverGatewayUsingIpRouteGet() (net.IP, error) {
 	routeCmd := exec.Command("ip", "route", "get", "8.8.8.8")
+	routeCmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 	output, err := routeCmd.CombinedOutput()
 	if err != nil {
 		return nil, err
@@ -38,6 +40,7 @@ func discoverGatewayUsingIpRouteGet() (net.IP, error) {
 
 func discoverGatewayUsingRoute() (net.IP, error) {
 	routeCmd := exec.Command("route", "-n")
+	routeCmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 	output, err := routeCmd.CombinedOutput()
 	if err != nil {
 		return nil, err
